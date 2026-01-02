@@ -13,7 +13,7 @@ class InvoiceController extends Controller
         $record = Invoice::query();
 
         $items = $record->orderBy('created_at', 'desc')->paginate(10)->appends($request->query());
-        return view('invoice.view', compact('items'));
+        return view('invoice.index', compact('items'));
     }
 
     public function create()
@@ -68,7 +68,7 @@ class InvoiceController extends Controller
 
         $pdf = Pdf::loadView('invoice.pdf', $data); 
         
-        return redirect()->route('invoice.view')->with('success', 'Invoice generated successfully! You can view or print it from the list.');
+        return redirect()->route('invoice.index')->with('success', 'Invoice generated successfully! You can view or print it from the list.');
     }
 
     public function print($invoice_number)

@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/invoice/view', [App\Http\Controllers\InvoiceController::class, 'index'])->name('invoice.view');
+Route::get('/invoice', [App\Http\Controllers\InvoiceController::class, 'index'])->name('invoice.index');
 Route::get('/invoice/form', function() {
     return view('invoice.form');
 });
@@ -14,8 +14,8 @@ Route::get('/invoice/form', function() {
 Route::post('/invoice/generate', [App\Http\Controllers\InvoiceController::class, 'generate'])->name('invoice.generate');
 Route::get('/invoice/print/{invoice_number}', [App\Http\Controllers\InvoiceController::class, 'print'])->name('invoice.print');
 
-Route::get('/home/stock-barangs/view', [App\Http\Controllers\StockBarangController::class, 'list'])
-    ->name('stock-barangs.view');
+// Route::get('/home/stock-barangs/view', [App\Http\Controllers\StockBarangController::class, 'list'])
+//     ->name('stock-barangs.view');
 
 Route::resource('/home/stock-barangs', App\Http\Controllers\StockBarangController::class);
 
@@ -40,10 +40,8 @@ Route::get('/home/projects/projects-detail', function () {
     return view('projects-detail');
 });
 
-Route::get('/administrator', function () {
+Route::get('/login', function () {
     return view('sign-in');
 });
 
-// Route::get('/sign-up', function () {
-//     return view('sign-up');
-// });
+Route::resource('/user-management', App\Http\Controllers\UserController::class);

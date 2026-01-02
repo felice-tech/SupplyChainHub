@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'View Stock Item')
+@section('title', 'View User')
 
 @section('head')
 <style>
@@ -167,74 +167,49 @@
 
 @section('content')
 <div class="page-container">
-  <h1>📄 Stock Item Details</h1>
-  <p class="page-subtitle">View detailed information about this stock item</p>
+  <h1>📄 User Details</h1>
+  <p class="page-subtitle">View detailed information about this User</p>
 
   <div class="detail-section">
-    <div class="detail-section-title">📦 Stock Information</div>
+    <div class="detail-section-title">📦 User Information</div>
     <div class="detail-grid">
       
       <div class="detail-row">
-        <div class="detail-label">Kode Barang</div>
-        <div class="detail-value"><strong>{{ $item->kode_barang }}</strong></div>
+        <div class="detail-label">ID</div>
+        <div class="detail-value"><strong>{{ $item->id }}</strong></div>
       </div>
 
       <div class="detail-row">
-        <div class="detail-label">Nama Barang</div>
-        <div class="detail-value">{{ $item->nama_barang }}</div>
+        <div class="detail-label">Name</div>
+        <div class="detail-value">{{ $item->name }}</div>
       </div>
 
       <div class="detail-row">
-        <div class="detail-label">Satuan</div>
-        <div class="detail-value">{{ $item->satuan }}</div>
+        <div class="detail-label">Email</div>
+        <div class="detail-value">{{ $item->email }}</div>
       </div>
 
       <div class="detail-row">
-        <div class="detail-label">Harga Beli (satuan)</div>
-        <div class="detail-value">Rp {{ number_format($item->harga_beli_satuan ?? 0, 0, ',', '.') }}</div>
+        <div class="detail-label">Role</div>
+        <div class="detail-value">{{ $item->role }}</div>
       </div>
 
       <div class="detail-row">
-        <div class="detail-label">Harga Jual (satuan)</div>
-        <div class="detail-value">Rp {{ number_format($item->harga_jual_satuan ?? 0, 0, ',', '.') }}</div>
+        <div class="detail-label">Created at</div>
+        <div class="detail-value">{{ $item->created_at }}</div>
       </div>
 
       <div class="detail-row">
-        <div class="detail-label">Stok Awal</div>
-        <div class="detail-value">{{ $item->stok_awal }}</div>
-      </div>
-
-      <div class="detail-row">
-        <div class="detail-label">Stok Masuk</div>
-        <div class="detail-value">{{ $item->stok_masuk }}</div>
-      </div>
-
-      <div class="detail-row">
-        <div class="detail-label">Stok Keluar</div>
-        <div class="detail-value">{{ $item->stok_keluar }}</div>
-      </div>
-
-      <div class="detail-row">
-        <div class="detail-label">Quantity</div>
-        <div class="quantity-highlight">{{ $item->quantity ?? 0 }}</div>
-      </div>
-
-      <div class="detail-row">
-        <div class="detail-label">Tanggal</div>
-        <div class="detail-value">{{ optional($item->tanggal)->format('d/m/Y H:i') }}</div>
-      </div>
-
-      <div class="detail-row">
-        <div class="detail-label">Keterangan</div>
-        <div class="detail-value">{{ $item->keterangan ?: '-' }}</div>
+        <div class="detail-label">Updated at</div>
+        <div class="detail-value">{{ $item->updated_at }}</div>
       </div>
 
     </div>
   </div>
 
   <div class="action-buttons">
-    <a href="{{ url('/home/stock-barangs') }}" class="btn-secondary">← Back to List</a>
-    <a href="{{ url('/home/stock-barangs/'.$item->id.'/edit') }}" class="btn-primary">✏️ Edit</a>
+    <a href="{{ url('user-management') }}" class="btn-secondary">← Back to List</a>
+    <a href="{{ url('user-management/'.$item->id.'/edit') }}" class="btn-primary">✏️ Edit</a>
   </div>
 </div>
 @endsection

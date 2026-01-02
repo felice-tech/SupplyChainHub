@@ -41,6 +41,18 @@
 			border: 1px solid #f5c6cb;
 			color: #721c24;
 		}
+
+		/* Active menu item styles */
+		.sidebar-menu ul li a.active {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: #fff;
+			font-weight: 600;
+			box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+		}
+
+		.sidebar-menu ul li a.active i {
+			transform: scale(1.1);
+		}
 	</style>
 	@yield('head')
 </head>
@@ -54,31 +66,31 @@
     <nav class="sidebar-menu">
       <ul>
         <li>
-          <a href="{{ url('/home') }}">
+          <a href="{{ url('/home') }}" class="{{ request()->is('home') || request()->is('/') ? 'active' : '' }}">
             <i>🏠</i>
             <span>Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="{{ url('/home/stock-barangs') }}" class="active">
+          <a href="{{ url('/home/stock-barangs') }}" class="{{ request()->is('home/stock-barangs*') ? 'active' : '' }}">
             <i>📦</i>
             <span>Stock Barang</span>
           </a>
         </li>
         <li>
-          <a href="{{ url('/invoice/view') }}">
+          <a href="{{ url('/invoice') }}" class="{{ request()->is('invoice*') ? 'active' : '' }}">
             <i>📊</i>
             <span>Invoice</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="{{url ('/user-management')}}" class="{{ request()->is('user-management*') ? 'active' : '' }}">
             <i>👥</i>
             <span>Users</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" class="{{ request()->is('settings*') ? 'active' : '' }}">
             <i>⚙️</i>
             <span>Settings</span>
           </a>

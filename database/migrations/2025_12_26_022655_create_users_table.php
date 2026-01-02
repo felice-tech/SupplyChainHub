@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id()->autoincrement()->notnull();
             $table->string('name')->notnull();
             $table->string('email')->unique()->notnull();
-            $table->datetime('email_verified_at')->nullable();
             $table->string('password')->notnull();
-            $table->string('remember_token')->nullable();
+            $table->string('role')->default('user')->notnull();
             $table->timestamps();
         });
     }

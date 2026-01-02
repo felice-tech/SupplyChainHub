@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Edit Stock Item')
+@section('title', 'Edit User')
 
 @section('head')
 <style>
@@ -273,8 +273,8 @@
 
 @section('content')
 <div class="page-container">
-  <h1>✏️ Edit Stock Item</h1>
-  <p class="page-subtitle">Update stock item information</p>
+  <h1>✏️ Edit User</h1>
+  <p class="page-subtitle">Update user information</p>
 
   @if(session('success'))
     <div class="alert alert-success">✅ {{ session('success') }}</div>
@@ -291,122 +291,70 @@
     </div>
   @endif
 
-  <div class="current-values-info">
-    <p><strong>📦 Current Item:</strong> {{ $item->kode_barang }} - {{ $item->nama_barang }}</p>
-    <p><strong>📊 Current Quantity:</strong> {{ $item->quantity }}</p>
-  </div>
-
-  <form action="{{ url('/home/stock-barangs/'.$item->id) }}" method="POST">
+  <form action="{{ url('/user-management/'.$item->id) }}" method="POST">
     @csrf
     @method('PUT')
     
     <div class="form-section">
-      <div class="form-section-title">📦 Item Information</div>
+      <div class="form-section-title">📦 User Information</div>
       <div class="form-grid">
-        <div class="form-row">
-          <label>Kode Barang</label>
-          <input type="text" name="kode_barang" value="{{ old('kode_barang', $item->kode_barang) }}" required>
-        </div>
-        @error('kode_barang')<div class="field-error">{{ $message }}</div>@enderror
 
         <div class="form-row">
-          <label>Nama Barang</label>
-          <input type="text" name="nama_barang" value="{{ old('nama_barang', $item->nama_barang) }}" required>
+          <label>ID</label>
+          <input type="text" name="id" value="{{ old('id', $item->id) }}" readonly>
         </div>
-        @error('nama_barang')<div class="field-error">{{ $message }}</div>@enderror
 
         <div class="form-row">
-          <label>Satuan</label>
-          <select name="satuan">
-            <option value="">-- select satuan --</option>
-            <option value="Box" {{ (old('satuan', $item->satuan) === 'Box') ? 'selected' : '' }}>Box</option>
-            <option value="Pcs" {{ (old('satuan', $item->satuan) === 'Pcs') ? 'selected' : '' }}>Pcs</option>
+          <label>Name</label>
+          <input type="text" name="name" value="{{ old('name', $item->name) }}">
+        </div>
+        @error('name')<div class="field-error">{{ $message }}</div>@enderror
+
+        <div class="form-row">
+          <label>Email</label>
+          <input type="text" name="email" value="{{ old('email', $item->email) }}" required>
+        </div>
+        @error('email')<div class="field-error">{{ $message }}</div>@enderror
+
+        <div class="form-row">
+          <label>Password (leave blank to keep current)</label>
+          <input type="password" name="password">
+        </div>
+
+        <div class="form-row">
+          <label>Confirm Password</label>
+          <input type="password" name="password_confirmation">
+        </div>
+        @error('password')<div class="field-error">{{ $message }}</div>@enderror
+
+        <div class="form-row">
+          <label>Role</label>
+          <select name="role">
+            <option value="user" {{ (old('role', $item->role) == 'user') ? 'selected' : '' }}>User</option>
+            <option value="admin" {{ (old('role', $item->role) == 'admin') ? 'selected' : '' }}>Admin</option>
           </select>
         </div>
-        @error('satuan')<div class="field-error">{{ $message }}</div>@enderror
-      </div>
+        @error('role')<div class="field-error">{{ $message }}</div>@enderror
     </div>
 
-    <div class="form-section">
-      <div class="form-section-title">💰 Pricing</div>
-      <div class="form-grid">
-        <div class="form-row">
-          <label>Harga Beli (satuan)</label>
-          <input type="number" step="0.01" name="harga_beli_satuan" value="{{ old('harga_beli_satuan', $item->harga_beli_satuan) }}">
-        </div>
-        @error('harga_beli_satuan')<div class="field-error">{{ $message }}</div>@enderror
-
-        <div class="form-row">
-          <label>Harga Jual (satuan)</label>
-          <input type="number" step="0.01" name="harga_jual_satuan" value="{{ old('harga_jual_satuan', $item->harga_jual_satuan) }}">
-        </div>
-        @error('harga_jual_satuan')<div class="field-error">{{ $message }}</div>@enderror
-      </div>
-    </div>
-
-    <div class="form-section">
-      <div class="form-section-title">📊 Stock Details</div>
-      <div class="form-grid">
-        <div class="form-row">
-          <label>Stok Awal</label>
-          <input type="number" name="stok_awal" value="{{ old('stok_awal', $item->stok_awal) }}">
-        </div>
-        @error('stok_awal')<div class="field-error">{{ $message }}</div>@enderror
-
-        <div class="form-row">
-          <label>Stok Masuk</label>
-          <input type="number" name="stok_masuk" value="{{ old('stok_masuk', $item->stok_masuk) }}">
-        </div>
-        @error('stok_masuk')<div class="field-error">{{ $message }}</div>@enderror
-
-        <div class="form-row">
-          <label>Stok Keluar</label>
-          <input type="number" name="stok_keluar" value="{{ old('stok_keluar', $item->stok_keluar) }}">
-        </div>
-        @error('stok_keluar')<div class="field-error">{{ $message }}</div>@enderror
-
-        <div class="form-row">
-          <label>Quantity (calculated)</label>
-          <input type="number" name="quantity" value="{{ old('quantity', $item->quantity) }}" readonly class="quantity-display">
-        </div>
-        @error('quantity')<div class="field-error">{{ $message }}</div>@enderror
-      </div>
-    </div>
-
-    <div class="form-section">
-      <div class="form-section-title">📅 Additional Information</div>
-      <div class="form-grid">
-        <div class="form-row">
-          <label>Tanggal</label>
-          <input type="datetime-local" name="tanggal" value="{{ old('tanggal', optional($item->tanggal)->format('Y-m-d\TH:i')) }}">
-        </div>
-        @error('tanggal')<div class="field-error">{{ $message }}</div>@enderror
-
-        <div class="form-row">
-          <label>Keterangan</label>
-          <textarea name="keterangan">{{ old('keterangan', $item->keterangan) }}</textarea>
-        </div>
-        @error('keterangan')<div class="field-error">{{ $message }}</div>@enderror
-      </div>
-    </div>
 
     <div class="form-actions">
-      <button type="submit" class="btn-primary">💾 Update Stock Item</button>
-      <a href="{{ url('/home/stock-barangs') }}" class="btn-secondary">❌ Cancel</a>
+      <button type="submit" class="btn-primary">💾 Update user</button>
+      <a href="{{ url('/user-management') }}" class="btn-secondary">❌ Cancel</a>
       <div class="admin-note">
-        Only Admin can delete stock items.
+        Only Admin can delete users.
       </div>
     </div>
   </form>
 
   <div class="delete-section">
-    <form action="{{ url('/home/stock-barangs/'.$item->id) }}"
+    <form action="{{ url('/user-management/'.$item->id) }}"
           method="POST"
           onsubmit="return confirm('Are you sure you want to delete this stock item? This action cannot be undone.');">
       @csrf
       @method('DELETE')
       <button type="submit" class="btn-danger">
-        🗑️ Delete User
+        🗑️ Delete Stock Item
       </button>
     </form>
   </div>

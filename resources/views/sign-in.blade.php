@@ -14,47 +14,50 @@
 <body>
 
   <!--  Page Wrapper -->
-  <div class="page-wrapper overflow-hidden">
+  <form action="{{ url('/user-management') }}" method="POST">
+    <div class="page-wrapper overflow-hidden">
+  
+      <!--  Get in touch Section -->
+      <section
+        class="bg-light-gray border-top border-primary border-4 d-flex align-items-center justify-content-center min-vh-100">
+        <div class="container py-3">
+          <div class="sign-in card mx-auto shadow-lg">
+            <div class="card-body py-8 px-lg-5">
+              <div class="mb-8 hstack justify-content-center">
+                <img src="../assets/images/logos/logo-dark.svg" alt="logo-dark" class="img-fluid">
+              </div>
 
-    <!--  Get in touch Section -->
-    <section
-      class="bg-light-gray border-top border-primary border-4 d-flex align-items-center justify-content-center min-vh-100">
-      <div class="container py-3">
-        <div class="sign-in card mx-auto shadow-lg">
-          <div class="card-body py-8 px-lg-5">
-            <div class="mb-8 hstack justify-content-center">
-              <img src="../assets/images/logos/logo-dark.svg" alt="logo-dark" class="img-fluid">
+              <form class="d-flex flex-column gap-3">
+                <div>
+                  <input type="email" class="form-control border-bottom" id="exampleInputEmail1" placeholder="Email"
+                    aria-describedby="emailHelp">
+                </div>
+                <div>
+                  <input type="password" class="form-control border-bottom" id="inputPassword" placeholder="Password">
+                </div>
+
+                <a href="index.html" class="btn btn-dark w-100 justify-content-center py-2 fw-medium my-7 fs-4 lh-lg">
+                  Sign In
+                </a>
+              </form>
+              <a class="text-center mb-1 d-block text-dark fw-medium" href="#">Forget Password?</a>
+              </p>
             </div>
-
-            <form class="d-flex flex-column gap-3">
-              <div>
-                <input type="email" class="form-control border-bottom" id="exampleInputEmail1" placeholder="Email"
-                  aria-describedby="emailHelp">
-              </div>
-              <div>
-                <input type="password" class="form-control border-bottom" id="inputPassword" placeholder="Password">
-              </div>
-
-              <a href="index.html" class="btn btn-dark w-100 justify-content-center py-2 fw-medium my-7 fs-4 lh-lg">
-                Sign In
-              </a>
-            </form>
-            <a class="text-center mb-1 d-block text-dark fw-medium" href="#">Forget Password?</a>
-            </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </div>
+    </div>
 
-  <div class="get-template hstack gap-2">
-    
-    <button class="btn bg-primary p-2 round-52 rounded-circle hstack justify-content-center flex-shrink-0"
-      id="scrollToTopBtn">
-      <iconify-icon icon="lucide:arrow-up" class="fs-7 text-dark"></iconify-icon>
-    </button>
-  </div>
+
+    <div class="get-template hstack gap-2">
+      
+      <button class="btn bg-primary p-2 round-52 rounded-circle hstack justify-content-center flex-shrink-0"
+        id="scrollToTopBtn">
+        <iconify-icon icon="lucide:arrow-up" class="fs-7 text-dark"></iconify-icon>
+      </button>
+    </div>
+  </form>
 
 
   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>

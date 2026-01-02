@@ -138,7 +138,6 @@ class StockBarangController extends Controller
             'stok_awal' => $stok_awal,
             'stok_masuk' => $stok_masuk,
             'stok_keluar' => $stok_keluar,
-            'quantity' => $quantity,
             'tanggal' => $tanggal,
             'keterangan' => $base['keterangan'] ?? null,
             'created_at' => $created_at,

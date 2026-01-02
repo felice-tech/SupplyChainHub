@@ -269,6 +269,7 @@
     }
   }
 </style>
+<script src="https://cdn.tailwindcss.com"></script>
 @endsection
 
 
@@ -362,15 +363,12 @@
                 </button>
             </div>
         </form>
-        <form>
-
-        </form>
     </div>
 </div>
 @endsection
 
 @section('scripts')
-<script src="https://cdn.tailwindcss.com">
+<script>
     let itemCount = 1;
 
     function addItem() {
